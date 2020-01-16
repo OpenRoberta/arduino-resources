@@ -29,8 +29,4 @@ WORKDIR /opt/ora-cc-rsc/
 COPY ./ ./
 ENV robot_crosscompiler_resourcebase=/opt/ora-cc-rsc/
 
-RUN ./compile_resources.sh uno
-RUN ./compile_resources.sh nano :cpu=atmega328
-RUN ./compile_resources.sh mega :cpu=atmega2560
-RUN mv release RobotArdu
-RUN rm -rf target
+ENTRYPOINT ["/opt/ora-cc-rsc/compile_all.sh"]
