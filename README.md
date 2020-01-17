@@ -28,6 +28,6 @@ docker build --no-cache -t rbudde/arduinolibs:1 -f Dockerfile .
 To run the image:
 
 mkdir ./arduino-resources
-docker run -v /data/openroberta-lab/git/arduino-resources/arduino-resources:/opt/ora-cc-rsc/RobotArdu/release rbudde/arduinolibs:1
+docker run -v /data/openroberta-lab/git/arduino-resources/arduino-resources:/opt/arduino-resources rbudde/arduinolibs:1
 
 Copy 
