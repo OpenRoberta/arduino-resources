@@ -7,6 +7,7 @@ mkdir -p target
 
 mkdir -p release/core/$VARIANT
 cp target/core/core.a release/core/$VARIANT
+cp target/core/WMath.cpp.o release/core/$VARIANT
 find target/libraries -type f -name "*.o" > lib.objects
 xargs avr-gcc-ar rcs libora.a < lib.objects
 mkdir -p release/lib/$VARIANT
