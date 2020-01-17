@@ -27,6 +27,6 @@ ENV PATH="${PATH}:/opt/compiler/avr/bin"
 
 WORKDIR /opt/ora-cc-rsc/
 COPY ./ ./
-ENV robot_crosscompiler_resourcebase=/opt/ora-cc-rsc/
+ENV arduino_resources_dir=/opt/arduino-resources/
 
 ENTRYPOINT ["/opt/ora-cc-rsc/compile_all.sh"]

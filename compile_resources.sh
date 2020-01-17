@@ -1,16 +1,21 @@
 VARIANT=$1
 CPU=$2
 
-mkdir -p target
+TMP_DIR=/tmp/arduino-resources
+rm -rf $TMP_DIR
+mkdir -p $TMP_DIR
 
-./RobotArdu/arduino-builder/linux/arduino-builder -hardware=./RobotArdu/hardware/builtin -hardware=./RobotArdu/hardware/additional -tools=./RobotArdu/arduino-builder/linux/tools-builder -libraries=./RobotArdu/libraries -fqbn=arduino:avr:$VARIANT$CPU -prefs=compiler.path= -build-path=./target packing.ino
+$SRC_DIR/RobotArdu/arduino-builder/linux/arduino-builder \
+  -hardware=$SRC_DIR/RobotArdu/hardware/builtin \
+  -hardware=$SRC_DIR/RobotArdu/hardware/additional \
+  -tools=$SRC_DIR/RobotArdu/arduino-builder/linux/tools-builder \
+  -libraries=$SRC_DIR/RobotArdu/libraries \
+  -fqbn=arduino:avr:$VARIANT$CPU -prefs=compiler.path= -build-path=$TMP_DIR packing.ino
 
-mkdir -p release/core/$VARIANT
-cp target/core/core.a release/core/$VARIANT
-cp target/core/WMath.cpp.o release/core/$VARIANT
-find target/libraries -type f -name "*.o" > lib.objects
-xargs avr-gcc-ar rcs libora.a < lib.objects
-mkdir -p release/lib/$VARIANT
-mv libora.a release/lib/$VARIANT
+mkdir -p $TGT_DIR/core/$VARIANT
+cp $TMP_DIR/core/core.a $TGT_DIR/core/$VARIANT
+cp $TMP_DIR/core/WMath.cpp.o $TGT_DIR/core/$VARIANT
+find $TMP_DIR/libraries -type f -name "*.o" | xargs avr-gcc-ar rcs libora.a
+mkdir -p $TGT_DIR/lib/$VARIANT
+mv libora.a $TGT_DIR/lib/$VARIANT
 
-rm lib.objects
