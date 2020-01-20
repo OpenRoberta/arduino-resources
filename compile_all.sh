@@ -6,6 +6,7 @@ export TGT_DIR=/opt/arduino-resources
 ./compile_resources.sh uno
 ./compile_resources.sh nano :cpu=atmega328
 ./compile_resources.sh mega :cpu=atmega2560
+./compile_resources_mbot.sh
 
 mkdir $TGT_DIR/includes
 cd $SRC_DIR/RobotArdu/libraries
