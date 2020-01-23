@@ -1,12 +1,13 @@
 #!/bin/bash
 
 export SRC_DIR=/opt/ora-cc-rsc
-export TGT_DIR=/opt/arduino-resources
+export TGT_DIR=/tmp/arduino-release
 
 ./compile_resources.sh uno
 ./compile_resources.sh nano :cpu=atmega328
 ./compile_resources.sh mega :cpu=atmega2560
 ./compile_resources_mbot.sh
+./compile_resources_wifirev2.sh
 
 mkdir $TGT_DIR/includes
 cd $SRC_DIR/RobotArdu/libraries
