@@ -11,6 +11,7 @@ PROGRAM_NAME=$5
 ORA_CC_RSC=$6
 #uno, nano or mega
 ARDUINO_DIR_BOARD_NAME=$7
+ARDUINO_ARCH=$8
 PRECOMPILE_DIR=$ORA_CC_RSC/arduino-resources
 LIB_INCLUDE_DIR=$PRECOMPILE_DIR/includes
 LIB_DIR=$PRECOMPILE_DIR/lib/$ARDUINO_DIR_BOARD_NAME
@@ -20,7 +21,7 @@ CORE_INCLUDES=$ORA_CC_RSC/hardware/builtin/arduino/avr/cores/arduino
 VARIANTS_INCLUDES=$ORA_CC_RSC/hardware/builtin/arduino/avr/variants/$BOARD_VARIANT
 
 avr-g++ -c -g -Os -Wall -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics \
-        -Wno-error=narrowing -MMD -flto -mmcu=$MMCU -DF_CPU=16000000L -DARDUINO=10809 -D$ARDUINO_VARIANT -DARDUINO_ARCH_AVR \
+        -Wno-error=narrowing -MMD -flto -mmcu=$MMCU -DF_CPU=16000000L -DARDUINO=10809 -D$ARDUINO_VARIANT -D$ARDUINO_ARCH \
 		-I$CORE_INCLUDES -I$VARIANTS_INCLUDES -I$LIB_INCLUDE_DIR -I$PRECOMPILE_DIR/includes/ArduinoSTL/src/ \
 		$BUILD_DIR/$PROGRAM_NAME.cpp -o $BUILD_DIR/$PROGRAM_NAME.o
 
