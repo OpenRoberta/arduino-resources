@@ -9,6 +9,7 @@ export TGT_DIR=/tmp/arduino-release
 ./compile_resources_mbot.sh
 ./compile_resources_wifirev2.sh
 ./compile_resources_bob3.sh
+./compile_resources_sensebox.sh
 
 mkdir $TGT_DIR/includes
 cd $SRC_DIR/RobotArdu/libraries
