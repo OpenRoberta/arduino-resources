@@ -3,12 +3,20 @@ This GIT repository is needed to generate all resources, that are used to compil
 - MEGA
 - NANO
 - UNO
+- UNO WIFI REV2
+- bob3
 
 The resources generated are
 
-- libraries,
+- libraries (.a archive),
 - header files and a
 - script, that runs the Arduino compiler and linker in the lab
+
+Sketches that are located in respective folders contain header includes and are processed by arduino builder to
+find all dependencies and compile the libraries. Once this lengthy process is done, the results can be reused.
+
+In order to add new libraries simply put the include directive with the needed header in the respective sketch.
+Do not forget to provide the library itself in RobotArdu/libraries.
 
 The main reason for creating this repository is to to speed up the compilation in the lab. To achieve this,
 unnecessary (re-)compilations are avoided by compiling everything that could be referenced in the lab once and
@@ -30,4 +38,4 @@ To run the image:
 mkdir ./arduino-resources
 docker run -v /data/openroberta-lab/git/arduino-resources/arduino-resources:/opt/arduino-resources rbudde/arduinolibs:1
 
-Copy 
+Copy generated resources (core, includes, lib) to ora-cc-rsc/RobotArdu/gcc-compilation/
