@@ -9,7 +9,7 @@ export TGT_DIR=/tmp/arduino-release
 ./compile_resources_mbot.sh
 ./compile_resources_wifirev2.sh
 ./compile_resources_bob3.sh
-./compile_resources_sensebox.sh
+#./compile_resources_sensebox.sh
 
 mkdir $TGT_DIR/includes
 cd $SRC_DIR/RobotArdu/libraries
@@ -23,3 +23,5 @@ cd $SRC_DIR/RobotArdu/hardware/additional/arduino/hardware/avr/1.6.22/libraries
 find . -name '*.h' -exec cp -- \{\} $TGT_DIR/includes \;
 
 cp $SRC_DIR/build_project.sh $TGT_DIR
+cp $SRC_DIR/build_project_bob3.sh $TGT_DIR
+cp $SRC_DIR/build_project_sensebox.sh $TGT_DIR

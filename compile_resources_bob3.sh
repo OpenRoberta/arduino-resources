@@ -9,6 +9,3 @@ avr-ar -q ./bob3/libbob3-smd.a ./bob3/analog.o ./bob3/bob3.o ./bob3/ircom.o ./bo
 rm ./bob3/analog.o ./bob3/bob3.o ./bob3/ircom.o ./bob3/leds.o ./bob3/main.o ./bob3/bob3smd.o
 mkdir -p $TGT_DIR/lib/bob3
 mv ./bob3/libbob3-smd.a $TGT_DIR/lib/bob3
-
-mkdir $TGT_DIR/includes/bob3
-cp ./bob3/include* $TGT_DIR/includes/bob3

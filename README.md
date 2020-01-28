@@ -26,7 +26,7 @@ For a stable build the resources are generated inside a docker container. The C+
 in the lab) is installed in the image together with all Arduino sources.
 
 When the container is started, a shell script generates the libraries and stores them together with the header files
-in the directory /opt/arduino-resources. This directory is made available outside of the compiler as ./arduino-resources
+in the directory /tmp/arduino-release. This directory is made available outside of the compiler as ./arduino-release
 by a volume mount.
 
 To generate the docker image:
@@ -36,6 +36,6 @@ docker build --no-cache -t rbudde/arduinolibs:1 -f Dockerfile .
 To run the image:
 
 mkdir ./arduino-resources
-docker run -v /data/openroberta-lab/git/arduino-resources/arduino-resources:/opt/arduino-resources rbudde/arduinolibs:1
+docker run -v /data/openroberta-lab/git/arduino-resources/arduino-resources:/tmp/arduino-release rbudde/arduinolibs:1
 
 Copy generated resources (core, includes, lib) to ora-cc-rsc/RobotArdu/gcc-compilation/
