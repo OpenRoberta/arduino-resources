@@ -1,4 +1,4 @@
-VARIANT=wifirev2
+VARIANT=unowifirev2
 CPU=
 
 TMP_DIR=/tmp/arduino-resources
