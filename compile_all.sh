@@ -25,3 +25,4 @@ find . -name '*.h' -exec cp -- \{\} $TGT_DIR/includes \;
 cp $SRC_DIR/build_project.sh $TGT_DIR
 cp $SRC_DIR/build_project_bob3.sh $TGT_DIR
 cp $SRC_DIR/build_project_sensebox.sh $TGT_DIR
+cp $SRC_DIR/build_project_unowifirev2.sh $TGT_DIR
