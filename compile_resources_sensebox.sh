@@ -10,7 +10,7 @@ $SRC_DIR/RobotArdu/arduino-builder/linux/arduino-builder \
     -hardware=$SRC_DIR/RobotArdu/hardware/additional \
     -tools=$SRC_DIR/RobotArdu//arduino-builder/linux/tools-builder \
     -tools=$SRC_DIR/RobotArdu/hardware/additional \
-    -libraries=$SRC_DIR/RobotArdu//libraries \
+    -libraries=$SRC_DIR/RobotArdu/libraries \
     -fqbn=sensebox:samd:sb:power=on \
     -prefs=compiler.path= \
     -vid-pid=0X04D8_0XEF66 \

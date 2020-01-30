@@ -71,3 +71,6 @@ In file included from /opt/ora-cc-rsc/RobotArdu/libraries/SparkFun_LSM6DS3_Break
 
 Comes from a third party library, may be fixed with an update
 
+INPORTANT: LTO support was turned off for meagavr boards by removing -flto flag from platform.txt
+see commit d3c5308156cfd6976631b035a5489d8cb57b1cef, if it needs to be turned back on - revert this commit
+
