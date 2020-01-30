@@ -36,6 +36,38 @@ docker build --no-cache -t rbudde/arduinolibs:1 -f Dockerfile .
 To run the image:
 
 rm -rf ./arduino-resources && mkdir ./arduino-resources
+
 docker run -v /data/openroberta-lab/git/arduino-resources/arduino-resources:/tmp/arduino-release rbudde/arduinolibs:1
+
 rm -rf ../ora-cc-rsc/RobotArdu/arduino-resources && mkdir ../ora-cc-rsc/RobotArdu/arduino-resources
+
 cp -r ./arduino-resources ../ora-cc-rsc/RobotArdu/
+
+
+Following warnings can be disregarded:
+
+`cp: -r not specified; omitting directory './RobotArdu/libraries/ArduinoSTL/src/abi'`
+
+abi folder is not needed at all.
+
+The following:
+
+```
+In file included from /opt/ora-cc-rsc/RobotArdu/libraries/SparkFun_LSM6DS3_Breakout/src/SparkFunLSM6DS3.cpp:32:0:
+/opt/ora-cc-rsc/RobotArdu/hardware/additional/arduino/hardware/megaavr/1.8.5/libraries/Wire/src/Wire.h: In member function 'status_t LSM6DS3Core::readRegisterRegion(uint8_t*, uint8_t, uint8_t)':
+/opt/ora-cc-rsc/RobotArdu/hardware/additional/arduino/hardware/megaavr/1.8.5/libraries/Wire/src/Wire.h:62:13: note: candidate 1: uint8_t TwoWire::requestFrom(int, int)
+     uint8_t requestFrom(int, int);
+             ^~~~~~~~~~~
+/opt/ora-cc-rsc/RobotArdu/hardware/additional/arduino/hardware/megaavr/1.8.5/libraries/Wire/src/Wire.h:60:13: note: candidate 2: virtual uint8_t TwoWire::requestFrom(uint8_t, size_t)
+     uint8_t requestFrom(uint8_t, size_t);
+             ^~~~~~~~~~~
+/opt/ora-cc-rsc/RobotArdu/hardware/additional/arduino/hardware/megaavr/1.8.5/libraries/Wire/src/Wire.h: In member function 'status_t LSM6DS3Core::readRegister(uint8_t*, uint8_t)':
+/opt/ora-cc-rsc/RobotArdu/hardware/additional/arduino/hardware/megaavr/1.8.5/libraries/Wire/src/Wire.h:62:13: note: candidate 1: uint8_t TwoWire::requestFrom(int, int)
+     uint8_t requestFrom(int, int);
+             ^~~~~~~~~~~
+/opt/ora-cc-rsc/RobotArdu/hardware/additional/arduino/hardware/megaavr/1.8.5/libraries/Wire/src/Wire.h:60:13: note: candidate 2: virtual uint8_t TwoWire::requestFrom(uint8_t, size_t)
+     uint8_t requestFrom(uint8_t, size_t);
+```
+
+Comes from a third party library, may be fixed with an update
+
