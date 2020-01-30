@@ -23,7 +23,6 @@ VARIANTS_INCLUDES=$ORA_CC_RSC/hardware/builtin/arduino/avr/variants/$BOARD_VARIA
 cp $BUILD_DIR/$PROGRAM_NAME.ino $BUILD_DIR/$PROGRAM_NAME.cpp
 
 arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -c -g -Os -Wall -Wextra -std=gnu++11 -ffunction-sections -fdata-sections -fno-threadsafe-statics -nostdlib --param max-inline-insns-single=500 -fno-rtti -fno-exceptions -MMD -DF_CPU=48000000L -DARDUINO=10809 -DARDUINO_SAMD_MKR1000 -DARDUINO_ARCH_SAMD -D__SAMD21G18A__ -DUSB_VID=0x04D8 -DUSB_PID=0xEF67 -DUSBCON "-DUSB_MANUFACTURER=\"senseBox\"" "-DUSB_PRODUCT=\"senseBox MCU\"" \
--I$LIB_INCLUDE_DIR \
 -I$ORA_CC_RSC/hardware/additional/arduino/tools/CMSIS/4.5.0/CMSIS/Include/ \
 -I$ORA_CC_RSC/hardware/additional/arduino/tools/CMSIS-Atmel/1.1.0/CMSIS/Device/ATMEL/ \
 -I$ORA_CC_RSC/hardware/additional/arduino/hardware/samd/1.6.20/cores/arduino \
@@ -37,6 +36,8 @@ arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -c -g -Os -Wall -Wextra -std=gnu++
 -I$ORA_CC_RSC/arduino-resources/includes/WiFi101/src \
 -I$ORA_CC_RSC/arduino-resources/includes/senseBoxIO/src \
 -I$ORA_CC_RSC/arduino-resources/includes/SenseBoxOTA/src \
+-I$ORA_CC_RSC/arduino-resources/includes/SenseBox-MCU \
+-I$ORA_CC_RSC/arduino-resources/includes/SD/src \
 -I$ORA_CC_RSC/arduino-resources/includes/SPI \
 -I$ORA_CC_RSC/arduino-resources/includes/Wire \
 -I$ORA_CC_RSC/arduino-resources/includes/RobertaFunctions \
@@ -47,6 +48,7 @@ arm-none-eabi-g++ -L$LIB_DIR -Os -Wl,--gc-sections -save-temps \
 -Wl,-Map,$BUILD_DIR/$PROGRAM_NAME.map --specs=nano.specs --specs=nosys.specs -mcpu=cortex-m0plus -mthumb \
 -Wl,--cref -Wl,--check-sections -Wl,--gc-sections -Wl,--unresolved-symbols=report-all -Wl,--warn-common -Wl,--warn-section-align \
 -o $BUILD_DIR/$PROGRAM_NAME.elf $BUILD_DIR/$PROGRAM_NAME.o \
+$PRECOMPILE_DIR/core/sensebox/variant.cpp.o \
 -Wl,--start-group -L$ORA_CC_RSC/hardware/additional/arduino/tools/CMSIS/4.5.0/CMSIS/Lib/GCC/  \
 -larm_cortexM0l_math  \
 -lora \
@@ -58,4 +60,4 @@ arm-none-eabi-objcopy -O binary $BUILD_DIR/$PROGRAM_NAME.elf $BUILD_DIR/$PROGRAM
 
 cp $BUILD_DIR/$PROGRAM_NAME.bin $BUILD_DIR/../target/$PROGRAM_NAME.ino.bin
 
-rm $BUILD_DIR/*.eep $BUILD_DIR/*.elf $BUILD_DIR/*.o $BUILD_DIR/*.d
+rm $BUILD_DIR/*.elf $BUILD_DIR/*.o $BUILD_DIR/*.d

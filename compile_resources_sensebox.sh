@@ -27,7 +27,8 @@ $SRC_DIR/RobotArdu/arduino-builder/linux/arduino-builder \
 mkdir -p $TGT_DIR/core/$VARIANT
 cp $TMP_DIR/core/core.a $TGT_DIR/core/$VARIANT
 cp $TMP_DIR/core/WMath.cpp.o $TGT_DIR/core/$VARIANT
-find $TMP_DIR/libraries -type f -name "*.o" | xargs avr-gcc-ar rcs libora.a
+cp $TMP_DIR/core/variant.cpp.o $TGT_DIR/core/$VARIANT
+find $TMP_DIR/libraries -type f -name "*.o" | xargs arm-none-eabi-ar rcs libora.a
 mkdir -p $TGT_DIR/lib/$VARIANT
 mv libora.a $TGT_DIR/lib/$VARIANT
 
