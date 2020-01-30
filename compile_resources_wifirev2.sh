@@ -11,7 +11,7 @@ $SRC_DIR/RobotArdu/arduino-builder/linux/arduino-builder \
   -tools=$SRC_DIR/RobotArdu/arduino-builder/linux/tools-builder \
   -tools=$SRC_DIR/RobotArdu/hardware/builtin/tools \
   -libraries=$SRC_DIR/RobotArdu/libraries \
-  -fqbn=arduino:megaavr:uno2018:mode=on -prefs=compiler.path= -build-path=$TMP_DIR arduino-wifi/packing.ino
+  -fqbn=arduino:megaavr:uno2018:mode=off -prefs=compiler.path= -build-path=$TMP_DIR arduino-wifi/packing.ino
 
 mkdir -p $TGT_DIR/core/$VARIANT
 cp $TMP_DIR/core/core.a $TGT_DIR/core/$VARIANT
