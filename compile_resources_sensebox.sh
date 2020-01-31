@@ -1,5 +1,4 @@
 VARIANT=sensebox
-CPU=
 
 TMP_DIR=/tmp/arduino-resources
 rm -rf $TMP_DIR
@@ -20,7 +19,6 @@ $SRC_DIR/RobotArdu/arduino-builder/linux/arduino-builder \
     -prefs=runtime.tools.CMSIS.path=$SRC_DIR/RobotArdu/hardware/additional/arduino/tools/CMSIS/4.5.0 \
     -prefs=runtime.tools.CMSIS-Atmel.path=$SRC_DIR/RobotArdu/hardware/additional/arduino/tools/CMSIS-Atmel/1.1.0 \
     -prefs=runtime.tools.openocd.path=$SRC_DIR/RobotArdu/hardware/additional/arduino/tools/openocd/0.9.0-arduino6-static \
-    -prefs=runtime.tools.arm-none-eabi-gcc.path=$SRC_DIR/RobotArdu/hardware/additional/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1 \
     -prefs=runtime.tools.bossac.path=$SRC_DIR/RobotArdu/hardware/additional/arduino/tools/bossac/1.7.0 \
     -build-path=$TMP_DIR sensebox/packing.ino
 

@@ -33,14 +33,40 @@ arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -c -g -Os -Wall -Wextra -std=gnu++
 -I$ORA_CC_RSC/hardware/additional/sensebox/hardware/samd/1.2.1/libraries/TinyGPSPlus/src \
 -I$ORA_CC_RSC/hardware/additional/sensebox/hardware/samd/1.2.1/libraries/OneWire \
 -I$ORA_CC_RSC/hardware/additional/sensebox/hardware/samd/1.2.1/libraries/Arduino-Temperature-Control-Library \
--I$ORA_CC_RSC/arduino-resources/includes/WiFi101/src \
--I$ORA_CC_RSC/arduino-resources/includes/senseBoxIO/src \
--I$ORA_CC_RSC/arduino-resources/includes/SenseBoxOTA/src \
--I$ORA_CC_RSC/arduino-resources/includes/SenseBox-MCU \
 -I$ORA_CC_RSC/arduino-resources/includes/SD/src \
 -I$ORA_CC_RSC/arduino-resources/includes/SPI \
 -I$ORA_CC_RSC/arduino-resources/includes/Wire \
 -I$ORA_CC_RSC/arduino-resources/includes/RobertaFunctions \
+-I$ORA_CC_RSC/arduino-resources/includes/Adafruit_BME280 \
+-I$ORA_CC_RSC/arduino-resources/includes/Adafruit_BME680 \
+-I$ORA_CC_RSC/arduino-resources/includes/Adafruit_BMP280 \
+-I$ORA_CC_RSC/arduino-resources/includes/Adafruit_BMP280_Library \
+-I$ORA_CC_RSC/arduino-resources/includes/Adafruit_BMP3XX \
+-I$ORA_CC_RSC/arduino-resources/includes/Adafruit-GFX-Library \
+-I$ORA_CC_RSC/arduino-resources/includes/Adafruit_HDC1000 \
+-I$ORA_CC_RSC/arduino-resources/includes/Adafruit_NeoPixel \
+-I$ORA_CC_RSC/arduino-resources/includes/Adafruit_Sensor \
+-I$ORA_CC_RSC/arduino-resources/includes/Adafruit_SSD1306 \
+-I$ORA_CC_RSC/arduino-resources/includes/ArduinoBearSSL/src \
+-I$ORA_CC_RSC/arduino-resources/includes/ArduinoECCX08/src \
+-I$ORA_CC_RSC/arduino-resources/includes/Arduino-Temperature-Control-Library \
+-I$ORA_CC_RSC/arduino-resources/includes/BMP280 \
+-I$ORA_CC_RSC/arduino-resources/includes/Ethernet/src \
+-I$ORA_CC_RSC/arduino-resources/includes/FlashStorage/src \
+-I$ORA_CC_RSC/arduino-resources/includes/HDC100X \
+-I$ORA_CC_RSC/arduino-resources/includes/LMIC/src \
+-I$ORA_CC_RSC/arduino-resources/includes/LoraMessage/src \
+-I$ORA_CC_RSC/arduino-resources/includes/Makerblog_TSL45315 \
+-I$ORA_CC_RSC/arduino-resources/includes/OneWire \
+-I$ORA_CC_RSC/arduino-resources/includes/RV8523 \
+-I$ORA_CC_RSC/arduino-resources/includes/SDS011-select-serial \
+-I$ORA_CC_RSC/arduino-resources/includes/senseBoxIO/src \
+-I$ORA_CC_RSC/arduino-resources/includes/SenseBox-MCU \
+-I$ORA_CC_RSC/arduino-resources/includes/SenseBoxOTA/src \
+-I$ORA_CC_RSC/arduino-resources/includes/SSD1306-Plot-Library \
+-I$ORA_CC_RSC/arduino-resources/includes/TinyGPSPlus/src \
+-I$ORA_CC_RSC/arduino-resources/includes/VEML6070 \
+-I$ORA_CC_RSC/arduino-resources/includes/WiFi101/src \
 $BUILD_DIR/$PROGRAM_NAME.cpp -o $BUILD_DIR/$PROGRAM_NAME.o
 
 arm-none-eabi-g++ -L$LIB_DIR -Os -Wl,--gc-sections -save-temps \
