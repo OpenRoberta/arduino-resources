@@ -31,6 +31,7 @@ void Bob3::init() {
     _bob3_revision = 103; // like THT V1.03
   }
   leds_init();
+  timer_init();
   analog_init();
   leds_set_RGBx(1, OFF);
   leds_set_RGBx(2, OFF);
@@ -317,4 +318,64 @@ uint16_t randomBits(uint8_t zeros, uint8_t ones) {
     }
   }
   return val;
+}
+
+// for the millis() implementation, taken from leds.c and the Arduino Core
+// as BOB3 uses TIMER0 for LEDs TIMER1 is used instead
+
+void timer_init() {
+  TCCR0A = _BV(COM1A1) // Clear OC0A on Compare Match, set OC0A at BOTTOM
+         | _BV(COM1B1) // Clear OC0B on Compare Match, set OC0B at BOTTOM
+         | _BV(WGM11) | _BV(WGM10); // Fast PWM
+  TCCR1B = _BV(CS11); // CLK/8
+  TIMSK1 = _BV(TOIE1); // enable timer overflow IRQ
+}
+
+#define clockCyclesPerMicrosecond() ( F_CPU / 1000000L )
+#define clockCyclesToMicroseconds(a) ( (a) / clockCyclesPerMicrosecond() )
+
+// the prescaler is set so that timer1 ticks every 8 clock cycles, and the
+// the overflow handler is called every 65536 ticks.
+#define MICROSECONDS_PER_TIMER1_OVERFLOW (clockCyclesToMicroseconds(8 * 65536))
+
+// the whole number of milliseconds per timer1 overflow
+#define MILLIS_INC (MICROSECONDS_PER_TIMER1_OVERFLOW / 1000)
+
+// the fractional number of milliseconds per timer1 overflow. we shift right
+// by three to fit these numbers into a byte. (for the clock speeds we care
+// about - 8 and 16 MHz - this doesn't lose precision.)
+#define FRACT_INC ((MICROSECONDS_PER_TIMER1_OVERFLOW % 1000) >> 3)
+#define FRACT_MAX (1000 >> 3)
+
+volatile unsigned long timer1_millis = 0;
+static unsigned char timer1_fract = 0;
+
+ISR(TIMER1_OVF_vect) {
+  // copy these to local variables so they can be stored in registers
+  // (volatile variables must be read from memory on every access)
+  unsigned long m = timer1_millis;
+  unsigned char f = timer1_fract;
+
+  m += MILLIS_INC;
+  f += FRACT_INC;
+  if (f >= FRACT_MAX) {
+    f -= FRACT_MAX;
+    m += 1;
+  }
+
+  timer1_fract = f;
+  timer1_millis = m;
+}
+
+unsigned long millis() {
+  unsigned long m;
+  uint8_t oldSREG = SREG;
+
+  // disable interrupts while we read timer1_millis or we might get an
+  // inconsistent value (e.g. in the middle of a write to timer1_millis)
+  cli();
+  m = timer1_millis;
+  SREG = oldSREG;
+
+  return m;
 }
