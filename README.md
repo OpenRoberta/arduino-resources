@@ -61,7 +61,7 @@ A zip file containing all of the libraries and scripts is created and available 
 To generate the docker image:
 
 ```bash
-docker build --no-cache -t rbudde/arduinolibs:1 -f Dockerfile .
+docker build --no-cache -t arduino-resources -f Dockerfile .
 ```
 
 To replace the arduino resources in ora-cc-rsc:
@@ -69,7 +69,7 @@ To replace the arduino resources in ora-cc-rsc:
 ```bash
 rm -rf ../ora-cc-rsc/RobotArdu/arduino-resources && mkdir ../ora-cc-rsc/RobotArdu/arduino-resources
 docker rm arduinolibs
-docker create --name arduinolibs rbudde/arduinolibs:1
+docker create --name arduinolibs arduino-resources
 docker cp arduinolibs:/tmp/arduino-release/. ../ora-cc-rsc/RobotArdu/arduino-resources
 ```
 

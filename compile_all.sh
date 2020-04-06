@@ -87,6 +87,7 @@ find ./variants/ -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/esp32/esp
 find ./tools/ -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/esp32/esp32 \;
 find ./tools/ -name '*.ld' -exec cp --parents \{\} $TGT_DIR/hardware/esp32/esp32 \;
 find ./tools/ -name '*.csv' -exec cp --parents \{\} $TGT_DIR/hardware/esp32/esp32 \;
+find ./tools/ -name '*.bin' -exec cp --parents \{\} $TGT_DIR/hardware/esp32/esp32 \;
 cp ./tools/gen_esp32part.py $TGT_DIR/hardware/esp32/esp32/tools/gen_esp32part.py
 cp ./tools/esptool.py $TGT_DIR/hardware/esp32/esp32/tools/esptool.py
 cd ./tools/sdk/lib/
