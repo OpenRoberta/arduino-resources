@@ -26,6 +26,7 @@ mkdir -p $TGT_DIR/hardware/arduino/avr/cores
 mkdir -p $TGT_DIR/hardware/arduino/avr/variants
 mkdir -p $TGT_DIR/hardware/arduino/megaavr/cores
 mkdir -p $TGT_DIR/hardware/arduino/megaavr/variants
+mkdir -p $TGT_DIR/hardware/arduino/megaavr/bootloaders
 mkdir -p $TGT_DIR/hardware/arduino/samd/cores
 mkdir -p $TGT_DIR/hardware/arduino/samd/variants
 mkdir -p $TGT_DIR/hardware/arduino/tools/CMSIS-Atmel/1.2.0/CMSIS/Device/ATMEL
@@ -47,20 +48,22 @@ find . -name '*.h' -exec cp --parents \{\} $TGT_DIR/includes \;
 cp ./ArduinoSTL/src/* $TGT_DIR/includes/ArduinoSTL/src
 rm -f $TGT_DIR/includes/ArduinoSTL/src/*.cpp
 
-# Core libraries
+# Arduino AVR libs
 cd /root/.arduino15/packages/arduino/hardware/avr/$ARDUINO_AVR_VERSION/libraries/
 find . -name '*.h' -exec cp --parents \{\} $TGT_DIR/includes/avr \;
 cd ..
 find ./cores/ -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/avr \;
 find ./variants/ -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/avr \;
 
+# Arduino MEGAAVR libs
 cd /root/.arduino15/packages/arduino/hardware/megaavr/$ARDUINO_MEGAAVR_VERSION/libraries/
 find . -name '*.h' -exec cp --parents \{\} $TGT_DIR/includes/megaavr \;
 cd ..
 find ./cores/ -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/megaavr \;
 find ./variants/ -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/megaavr \;
+find ./bootloaders/ -name '*.hex' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/megaavr \;
 
-# Sensebox Arduino libs
+# Arduino SAMD libs
 cd /root/.arduino15/packages/arduino/hardware/samd/$ARDUINO_SAMD_VERSION/libraries/
 find . -name '*.h' -exec cp --parents \{\} $TGT_DIR/includes/samd \;
 cd ..
@@ -71,14 +74,14 @@ find ./CMSIS-Atmel/1.2.0/CMSIS/Device/ATMEL -name '*.h' -exec cp --parents \{\} 
 find ./CMSIS/4.5.0/CMSIS/Include -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/tools \;
 find ./CMSIS/4.5.0/CMSIS/Lib/GCC -name 'libarm_cortexM0l_math.a' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/tools \;
 
-# Sensebox Sensebox libs
+# Sensebox SAMD libs
 cd /root/.arduino15/packages/sensebox/hardware/samd/$SENSEBOX_SAMD_VERSION/libraries/
 find . -name '*.h' -exec cp --parents \{\} $TGT_DIR/includes/samd \;
 cd ..
 find ./variants/ -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/sensebox/samd \;
 find ./variants/ -name '*.ld' -exec cp --parents \{\} $TGT_DIR/hardware/sensebox/samd \;
 
-# ESP32 libs and tools
+# ESP32 ESP32 libs and tools
 cd /root/.arduino15/packages/esp32/hardware/esp32/$ESP32_ESP32_VERSION/libraries/
 find . -name '*.h' -exec cp --parents \{\} $TGT_DIR/includes/esp32 \;
 cd ..

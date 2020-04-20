@@ -34,6 +34,8 @@ the compilers and resources.
 When the container is built, a shell script generates the libraries and stores them together with the header files
 in the directory `/tmp/arduino-release`.
 
+unowifirev2 and sensebox need to link with the `variant.c(pp).o` in addition to the core, otherwise nothing will be executed on the board.
+
 LTO support was turned off for uno, nano, mega, botnroll, mbot and unowifirev2 boards due to errors when using libraries on a Raspberry Pi.
 
 ## Adding new libraries
@@ -61,7 +63,7 @@ A zip file containing all of the libraries and scripts is created and available 
 To generate the docker image:
 
 ```bash
-docker build --no-cache -t arduino-resources -f Dockerfile .
+docker build -t arduino-resources -f Dockerfile .
 ```
 
 To replace the arduino resources in ora-cc-rsc:

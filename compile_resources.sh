@@ -38,9 +38,13 @@ echo Finished compilation
 echo Copying results
 mkdir -p $TGT_DIR/core/$NAME
 cp $TMP_DIR/core/core.a $TGT_DIR/core/$NAME
-if [ $PACKAGE == "sensebox" ]; then
+if [ $NAME == "sensebox" ]; then
   echo Additionally copying variant.cpp.o
   cp $TMP_DIR/core/variant.cpp.o $TGT_DIR/core/$NAME
+fi
+if [ $NAME == "unowifirev2" ]; then
+  echo Additionally copying variant.c.o
+  cp $TMP_DIR/core/variant.c.o $TGT_DIR/core/$NAME
 fi
 echo Creating and moving libraries archive
 find $TMP_DIR/libraries -type f -name "*.o" | xargs $ARCHIVER rcs libora.a

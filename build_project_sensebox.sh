@@ -45,11 +45,11 @@ arm-none-eabi-g++ -c -g -Os -Wall -Wextra -std=gnu++11 -ffunction-sections -fdat
                   $BUILD_DIR/$PROGRAM_NAME.cpp -o $BUILD_DIR/$PROGRAM_NAME.o
 
 arm-none-eabi-g++ -L$LIB_DIR -Os -Wl,--gc-sections -save-temps \
-                  -T$PRECOMPILE_DIR/hardware/sensebox/samd/variants/$BOARD_VARIANT/linker_scripts/gcc/flash_with_bootloader.ld \
+                  -T$PRECOMPILE_DIR/hardware/sensebox/$ARDUINO_ARCH/variants/$BOARD_VARIANT/linker_scripts/gcc/flash_with_bootloader.ld \
                   -Wl,-Map,$BUILD_DIR/$PROGRAM_NAME.map --specs=nano.specs --specs=nosys.specs -mcpu=cortex-m0plus -mthumb \
                   -Wl,--cref -Wl,--check-sections -Wl,--gc-sections -Wl,--unresolved-symbols=report-all -Wl,--warn-common -Wl,--warn-section-align \
                   -o $BUILD_DIR/$PROGRAM_NAME.elf $BUILD_DIR/$PROGRAM_NAME.o \
-                  $PRECOMPILE_DIR/core/sensebox/variant.cpp.o \
+                  $PRECOMPILE_DIR/core/$ARDUINO_DIR_BOARD_NAME/variant.cpp.o \
                   -Wl,--start-group -L$PRECOMPILE_DIR/hardware/arduino/tools/CMSIS/4.5.0/CMSIS/Lib/GCC/  \
                   -larm_cortexM0l_math  \
                   -lora \

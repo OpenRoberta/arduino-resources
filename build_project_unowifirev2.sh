@@ -36,8 +36,7 @@ avr-g++ -c -g -Os -Wall -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunc
 		-I$VARIANTS_INCLUDES \
 		$BUILD_DIR/$PROGRAM_NAME.cpp -o $BUILD_DIR/$PROGRAM_NAME.o
 
-avr-gcc -Wall -Wextra -Os -g -Wl,--gc-sections,--relax -mmcu=$MMCU -o $BUILD_DIR/$PROGRAM_NAME.elf $BUILD_DIR/$PROGRAM_NAME.o -L$LIB_DIR -lora -lm $CORE_FILE
-avr-objcopy -O ihex -j .eeprom --set-section-flags=.eeprom=alloc,load --no-change-warnings --change-section-lma .eeprom=0 $BUILD_DIR/$PROGRAM_NAME.elf $BUILD_DIR/$PROGRAM_NAME.eep
+avr-gcc -Wall -Wextra -Os -g -Wl,--gc-sections -Wl,--section-start=.text=0x200 -mmcu=$MMCU -o $BUILD_DIR/$PROGRAM_NAME.elf $BUILD_DIR/$PROGRAM_NAME.o $PRECOMPILE_DIR/core/$ARDUINO_DIR_BOARD_NAME/variant.c.o -L$LIB_DIR -lora -lm $CORE_FILE
 avr-objcopy -O ihex -R .eeprom $BUILD_DIR/$PROGRAM_NAME.elf $BUILD_DIR/../target/$PROGRAM_NAME.hex
 
-rm $BUILD_DIR/*.eep $BUILD_DIR/*.elf $BUILD_DIR/*.o $BUILD_DIR/*.d
+rm $BUILD_DIR/*.elf $BUILD_DIR/*.o $BUILD_DIR/*.d
