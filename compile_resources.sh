@@ -8,7 +8,7 @@ BOARD=$5
 ADDITIONAL=$6
 BUILD_PROPERTIES=$7
 
-echo Compiling resources for $NAME, packing.ino in $FOLDER will be used
+echo Compiling resources for $NAME, packing file $FOLDER.ino in $FOLDER will be used
 ARCHIVER=
 if [ $CPU_ARCH == "avr" ] || [ $CPU_ARCH == "megaavr" ]; then
   ARCHIVER=avr-gcc-ar
@@ -33,7 +33,7 @@ arduino-cli compile \
   --build-cache-path $TMP_DIR/core \
   --build-path $TMP_DIR \
   $BUILD_PROPERTIES \
-  $FOLDER/packing.ino
+  $FOLDER
 echo Finished compilation
 echo Copying results
 mkdir -p $TGT_DIR/core/$NAME
