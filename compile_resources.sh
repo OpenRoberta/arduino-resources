@@ -12,7 +12,7 @@ echo Compiling resources for $NAME, packing.ino in $FOLDER will be used
 ARCHIVER=
 if [ $CPU_ARCH == "avr" ] || [ $CPU_ARCH == "megaavr" ]; then
   ARCHIVER=avr-gcc-ar
-elif [ $CPU_ARCH == "samd" ]; then
+elif [ $CPU_ARCH == "samd" ] || [ $CPU_ARCH == "stm32" ]; then
   ARCHIVER=arm-none-eabi-ar
 elif [ $CPU_ARCH == "esp32" ]; then
   ARCHIVER=xtensa-esp32-elf-ar
@@ -45,6 +45,13 @@ fi
 if [ $NAME == "unowifirev2" ]; then
   echo Additionally copying variant.c.o
   cp $TMP_DIR/core/variant.c.o $TGT_DIR/core/$NAME
+fi
+if [ $NAME == "stm32" ]; then
+  echo Additionally copying variant.cpp.o, PeripheralPins.c.o and syscalls.c.o
+  cp $TMP_DIR/core/variant.cpp.o $TGT_DIR/core/$NAME
+  cp $TMP_DIR/core/PeripheralPins.c.o $TGT_DIR/core/$NAME
+  # syscalls.c.o is already archived in the library created below, but it needs to be linked explicitly for some reason
+  cp $TMP_DIR/libraries/SrcWrapper/syscalls.c.o $TGT_DIR/core/$NAME
 fi
 echo Creating and moving libraries archive
 find $TMP_DIR/libraries -type f -name "*.o" | xargs $ARCHIVER rcs libora.a

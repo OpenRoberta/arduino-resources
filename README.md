@@ -3,21 +3,23 @@
 ## General info
 This repository is needed to generate all resources, that are used to compile Arduino programs in the OpenRoberta Lab for
 
-- Arduino Mega
-- Arduino Nano
-- Arduino Uno
-- Arduino Uno Wifi Rev.2
-- BOB3
-- Bot'n Roll
-- Festo Bionics4Education
-- mBot
-- senseBox
+- Arduino Mega (avr-gcc)
+- Arduino Nano (avr-gcc)
+- Arduino Uno (avr-gcc)
+- Arduino Uno Wifi Rev.2 (avr-gcc)
+- BOB3 (avr-gcc)
+- Bot'n Roll (avr-gcc)
+- Festo Bionics4Education (xtensa-esp32-elf)
+- mBot (avr-gcc)
+- senseBox (arm-none-eabi)
+- STM32 Nucleo-64 (arm-none-eabi)
 
 The resources generated are
 
-- libraries (.a archive),
+- cores,
+- libraries (`libora.a` archive),
 - header files and
-- a script, that runs the compiler and linker in the Lab
+- a script, that runs the compiler and linker in the Lab.
 
 ## Details
 
@@ -35,6 +37,7 @@ When the container is built, a shell script generates the libraries and stores t
 in the directory `/tmp/arduino-release`.
 
 unowifirev2 and sensebox need to link with the `variant.c(pp).o` in addition to the core, otherwise nothing will be executed on the board.
+The Nucleo-64 board resources ship with newer versions of `CMSIS` and `arm-none-eabi`, but the older versions provided by the `samd` packages seem to suffice. It also requires explicit linking with `variant.cpp.o`, `PeripheralPins.c.o` and `syscalls.c.o`, the latter being actually already included in the `libora.a`.
 
 LTO support was turned off for uno, nano, mega, botnroll, mbot and unowifirev2 boards due to errors when using libraries on a Raspberry Pi.
 

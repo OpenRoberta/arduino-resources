@@ -14,6 +14,7 @@ echo Compiling all resources
 ./compile_resources.sh sensebox sensebox sensebox samd sb :power=on "" ""
 ./compile_resources_bob3.sh bob3 bob3
 ./compile_resources.sh festobionic festobionic esp32 esp32 esp32 :PSRAM=disabled,PartitionScheme=default,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=none "" ""
+./compile_resources.sh nucleo64 stm32 STM32 stm32 Nucleo_64 :pnum=NUCLEO_F401RE,upload_method=MassStorage,xserial=generic,usb=none,xusb=FS,opt=osstd,rtlib=nano ""
 echo Finished compilation
 
 echo Creating include and hardware folders
@@ -22,6 +23,7 @@ mkdir -p $TGT_DIR/includes/avr
 mkdir -p $TGT_DIR/includes/megaavr
 mkdir -p $TGT_DIR/includes/samd
 mkdir -p $TGT_DIR/includes/esp32
+mkdir -p $TGT_DIR/includes/stm32
 mkdir -p $TGT_DIR/hardware/arduino/avr/cores
 mkdir -p $TGT_DIR/hardware/arduino/avr/variants
 mkdir -p $TGT_DIR/hardware/arduino/megaavr/cores
@@ -35,6 +37,8 @@ mkdir -p $TGT_DIR/hardware/sensebox/samd/variants
 mkdir -p $TGT_DIR/hardware/esp32/esp32/cores
 mkdir -p $TGT_DIR/hardware/esp32/esp32/variants
 mkdir -p $TGT_DIR/hardware/esp32/esp32/tools
+mkdir -p $TGT_DIR/hardware/stm32/stm32/cores
+mkdir -p $TGT_DIR/hardware/stm32/stm32/variants
 
 echo Copying header files and tools
 # OpenRoberta libraries
@@ -96,6 +100,18 @@ cp ./tools/esptool.py $TGT_DIR/hardware/esp32/esp32/tools/esptool.py
 cd ./tools/sdk/lib/
 find . -name '*.a' -exec cp --parents \{\} $TGT_DIR/lib/festobionic \;
 
+# STM32 STM32 libs
+cd /root/.arduino15/packages/STM32/hardware/stm32/$STM32_STM32_VERSION/libraries/
+find . -name '*.h' -exec cp --parents \{\} $TGT_DIR/includes/stm32 \;
+cd ..
+find ./cores/ -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/stm32/stm32 \;
+find ./variants/ -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/stm32/stm32 \;
+find ./variants/ -name '*.ld' -exec cp --parents \{\} $TGT_DIR/hardware/stm32/stm32 \;
+find ./system/ -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/stm32/stm32 \;
+find ./system/ -name '*.ld' -exec cp --parents \{\} $TGT_DIR/hardware/stm32/stm32 \;
+cd /root/.arduino15/packages/arduino/tools/
+find ./CMSIS/4.5.0/CMSIS/Lib/GCC -name 'libarm_cortexM4lf_math.a' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/tools \;
+
 echo Copying build scripts
 cp $SRC_DIR/build_project.sh $TGT_DIR
 cp $SRC_DIR/build_project_bob3.sh $TGT_DIR
@@ -104,5 +120,6 @@ cp $SRC_DIR/build_project_festobionic.sh $TGT_DIR
 cp $SRC_DIR/build_project_mbot.sh $TGT_DIR
 cp $SRC_DIR/build_project_sensebox.sh $TGT_DIR
 cp $SRC_DIR/build_project_unowifirev2.sh $TGT_DIR
+cp $SRC_DIR/build_project_stm32.sh $TGT_DIR
 
 echo Everything finished

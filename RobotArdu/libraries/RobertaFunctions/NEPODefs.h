@@ -22,15 +22,15 @@
 #define M_INFINITY 0x7f800000
 #endif
 
-#ifndef RCHANNEL(color)
+#ifndef RCHANNEL
 #define RCHANNEL(color) ((uint8_t)(color >> 16))
 #endif
 
-#ifndef GCHANNEL(color)
+#ifndef GCHANNEL
 #define GCHANNEL(color) ((uint8_t)(color >> 8))
 #endif
 
-#ifndef BCHANNEL(color)
+#ifndef BCHANNEL
 #define BCHANNEL(color) ((uint8_t)(color))
 #endif
 
@@ -235,12 +235,12 @@ double _getListMedian(std::list<double> &list) {
     sorted.sort();
     auto iterator = sorted.begin();
     if (sorted.size() % 2 == 0) {
-        for (int i = 0; i < sorted.size() / 2; i++) {
+        for (unsigned int i = 0; i < sorted.size() / 2; i++) {
             iterator++;
         }
         return (*iterator + *--iterator) / 2;
     } else {
-        for (int i = 0; i < sorted.size() / 2; i++) {
+        for (unsigned int i = 0; i < sorted.size() / 2; i++) {
             iterator++;
         }
         return *iterator;
