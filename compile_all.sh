@@ -48,6 +48,8 @@ find . -name '*.h' -exec cp --parents \{\} $TGT_DIR/includes \;
 # Downloaded libraries
 cd /root/Arduino/libraries/
 find . -name '*.h' -exec cp --parents \{\} $TGT_DIR/includes \;
+# Some libraries may include precompiled data, like the BSEC Software Library
+find . -name '*.a' -exec cp --parents \{\} $TGT_DIR/includes \;
 # ArduinoSTL files are not suffixed with .h, instead copy everything and delete .cpp files
 cp ./ArduinoSTL/src/* $TGT_DIR/includes/ArduinoSTL/src
 rm -f $TGT_DIR/includes/ArduinoSTL/src/*.cpp

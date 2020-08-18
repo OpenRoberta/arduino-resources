@@ -45,7 +45,7 @@ LTO support was turned off for uno, nano, mega, botnroll, mbot and unowifirev2 b
 
 In order to add new libraries simply put the include directive with the needed header in the respective sketch.
 Do not forget to provide the library itself through arduino-cli in the Dockerfile.
-In some cases additional include directories may need to be added to the robot specific build scripts.
+In some cases additional include directories, or precompiled linking targets, may need to be added to the robot specific build scripts.
 
 ## Quickly testing libraries
 

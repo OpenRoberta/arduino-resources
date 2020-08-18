@@ -8,6 +8,8 @@
 #include <Plot.h>
 #include <SD.h>
 #include <stdlib.h>
+#include <Wire.h>
+#include <bsec.h>
 
 HDC1080 _hdc1080_H;
 GPS _gps_G2;
@@ -21,9 +23,11 @@ OpenSenseMap _osm("", _bee_);
 #define OLED_RESET 4
 Adafruit_SSD1306 _display_myDisplay(OLED_RESET);
 Plot _plot_myDisplay(&_display_myDisplay);
+Bsec _bme680;
 
 void setup()
 {
+    _bme680.begin(BME680_I2C_ADDR_PRIMARY, Wire);
 }
 
 void loop()
