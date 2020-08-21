@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <Wire.h>
 #include <bsec.h>
+#include <Adafruit_NeoPixel.h>
 
 HDC1080 _hdc1080_H;
 GPS _gps_G2;

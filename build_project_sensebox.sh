@@ -39,6 +39,7 @@ arm-none-eabi-g++ -c -g -Os -Wall -Wextra -std=gnu++11 -ffunction-sections -fdat
                   -I$LIB_INCLUDE_DIR/$ARDUINO_ARCH/WiFi101/src \
                   -I$LIB_INCLUDE_DIR/$ARDUINO_ARCH/Wire \
                   -I$LIB_INCLUDE_DIR/BSEC_Software_Library/src \
+                  -I$LIB_INCLUDE_DIR/Adafruit_NeoPixel \
                   -I$CORE_INCLUDES \
                   -I$VARIANTS_INCLUDES \
                   -I$PRECOMPILE_DIR/hardware/arduino/tools/CMSIS/4.5.0/CMSIS/Include/ \

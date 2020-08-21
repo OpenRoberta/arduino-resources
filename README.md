@@ -69,6 +69,8 @@ To generate the docker image:
 docker build -t arduino-resources -f Dockerfile .
 ```
 
+It makes sense to disable any active Anti-Virus for the duration of the docker build. It really slows down the build due to trying to scan every intermediate build file.
+
 To replace the arduino resources in ora-cc-rsc:
 
 ```bash

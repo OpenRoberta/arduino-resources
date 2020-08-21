@@ -56,7 +56,8 @@ RUN arduino-cli lib install "DHT sensor library"@1.3.8 && \
     arduino-cli lib install "Servo"@1.1.6 && \
     arduino-cli lib install "SparkFun LSM6DS3 Breakout"@1.0.0 && \
     arduino-cli lib install "Stepper"@1.1.3 && \
-    arduino-cli lib install "BSEC Software Library"@1.5.1474
+    arduino-cli lib install "BSEC Software Library"@1.5.1474 && \
+    arduino-cli lib install "Adafruit NeoPixel"@1.5.0
 
 # re-add when not using outdated LiquidCrystal_I2C
 #    arduino-cli lib install "LiquidCrystal I2C"@1.1.2 && \
