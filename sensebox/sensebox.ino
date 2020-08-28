@@ -12,23 +12,8 @@
 #include <bsec.h>
 #include <Adafruit_NeoPixel.h>
 
-HDC1080 _hdc1080_H;
-GPS _gps_G2;
-File _dataFile;
-BMP280 _bmp280_T;
-Ultrasonic _hcsr04_U(1, 2);
-VEML6070 _veml_V;
-TSL45315 _tsl_V;
-Bee* _bee_ = new Bee();
-OpenSenseMap _osm("", _bee_);
-#define OLED_RESET 4
-Adafruit_SSD1306 _display_myDisplay(OLED_RESET);
-Plot _plot_myDisplay(&_display_myDisplay);
-Bsec _bme680;
-
 void setup()
 {
-    _bme680.begin(BME680_I2C_ADDR_PRIMARY, Wire);
 }
 
 void loop()

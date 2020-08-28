@@ -33,7 +33,7 @@ ENV PATH = "${PATH}:/opt/compiler/"
 
 ENV ARDUINO_AVR_VERSION 1.8.3
 ENV ARDUINO_MEGAAVR_VERSION 1.8.6
-ENV ARDUINO_SAMD_VERSION 1.8.6
+ENV ARDUINO_SAMD_VERSION 1.8.8
 ENV SENSEBOX_SAMD_VERSION 1.3.1
 ENV ESP32_ESP32_VERSION 1.0.4
 ENV STM32_STM32_VERSION 1.9.0
@@ -48,16 +48,17 @@ RUN arduino-cli core update-index --additional-urls https://raw.githubuserconten
 ENV PATH "${PATH}:/root/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin:/root/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/7-2017q4/bin:/root/.arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/bin"
 
 # Install Arduino dependencies
-RUN arduino-cli lib install "DHT sensor library"@1.3.8 && \
-    arduino-cli lib install "ESP32Servo"@0.7.0 && \
-    arduino-cli lib install "IRremote"@2.2.3 && \
-    arduino-cli lib install "MFRC522"@1.4.6 && \
+RUN arduino-cli lib update-index && \
+    arduino-cli lib install "DHT sensor library"@1.3.10 && \
+    arduino-cli lib install "ESP32Servo"@0.9.0 && \
+    arduino-cli lib install "IRremote"@2.6.1 && \
+    arduino-cli lib install "MFRC522"@1.4.7 && \
     arduino-cli lib install "SD"@1.2.4 && \
     arduino-cli lib install "Servo"@1.1.6 && \
     arduino-cli lib install "SparkFun LSM6DS3 Breakout"@1.0.0 && \
     arduino-cli lib install "Stepper"@1.1.3 && \
     arduino-cli lib install "BSEC Software Library"@1.5.1474 && \
-    arduino-cli lib install "Adafruit NeoPixel"@1.5.0
+    arduino-cli lib install "Adafruit NeoPixel"@1.6.0
 
 # re-add when not using outdated LiquidCrystal_I2C
 #    arduino-cli lib install "LiquidCrystal I2C"@1.1.2 && \
