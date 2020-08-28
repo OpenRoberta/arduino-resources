@@ -26,6 +26,7 @@ avr-g++ -c -g -Os -Wall -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunc
 		-I$LIB_INCLUDE_DIR \
 		-I$LIB_INCLUDE_DIR/RobertaFunctions \
 		-I$LIB_INCLUDE_DIR/ArduinoSTL/src/ \
+		-I$LIB_INCLUDE_DIR/WiFiNINA/src/ \
         -I$LIB_INCLUDE_DIR/$ARDUINO_ARCH/EEPROM/src \
         -I$LIB_INCLUDE_DIR/$ARDUINO_ARCH/HID/src \
         -I$LIB_INCLUDE_DIR/$ARDUINO_ARCH/SoftwareSerial/src \
