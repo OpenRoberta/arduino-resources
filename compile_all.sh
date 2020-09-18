@@ -15,12 +15,14 @@ echo Compiling all resources
 ./compile_resources_bob3.sh bob3 bob3
 ./compile_resources.sh festobionic festobionic esp32 esp32 esp32 :PSRAM=disabled,PartitionScheme=default,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=none "" ""
 ./compile_resources.sh nucleo64 stm32 STM32 stm32 Nucleo_64 :pnum=NUCLEO_F401RE,upload_method=MassStorage,xserial=generic,usb=none,xusb=FS,opt=osstd,rtlib=nano ""
+./compile_resources.sh nano33ble nano33ble arduino mbed nano33ble "" ""
 echo Finished compilation
 
 echo Creating include and hardware folders
 # Prepare includes
 mkdir -p $TGT_DIR/includes/avr
 mkdir -p $TGT_DIR/includes/megaavr
+mkdir -p $TGT_DIR/includes/mbed
 mkdir -p $TGT_DIR/includes/samd
 mkdir -p $TGT_DIR/includes/esp32
 mkdir -p $TGT_DIR/includes/stm32
@@ -29,6 +31,8 @@ mkdir -p $TGT_DIR/hardware/arduino/avr/variants
 mkdir -p $TGT_DIR/hardware/arduino/megaavr/cores
 mkdir -p $TGT_DIR/hardware/arduino/megaavr/variants
 mkdir -p $TGT_DIR/hardware/arduino/megaavr/bootloaders
+mkdir -p $TGT_DIR/hardware/arduino/mbed/cores
+mkdir -p $TGT_DIR/hardware/arduino/mbed/variants
 mkdir -p $TGT_DIR/hardware/arduino/samd/cores
 mkdir -p $TGT_DIR/hardware/arduino/samd/variants
 mkdir -p $TGT_DIR/hardware/arduino/tools/CMSIS-Atmel/1.2.0/CMSIS/Device/ATMEL
@@ -68,6 +72,17 @@ cd ..
 find ./cores/ -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/megaavr \;
 find ./variants/ -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/megaavr \;
 find ./bootloaders/ -name '*.hex' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/megaavr \;
+
+# Arduino MBED libs
+cd /root/.arduino15/packages/arduino/hardware/mbed/$ARDUINO_MBED_VERSION/libraries/
+find . -name '*.h' -exec cp --parents \{\} $TGT_DIR/includes/mbed \;
+cd ..
+find ./cores/ -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/mbed \;
+find ./cores/arduino/mbed/platform/cxxsupport -name '*' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/mbed \;
+find ./variants/ -name '*.h' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/mbed \;
+find ./variants/ -name '*.ld' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/mbed \;
+find ./variants/ -name '*.txt' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/mbed \;
+find ./variants/ -name '*.a' -exec cp --parents \{\} $TGT_DIR/hardware/arduino/mbed \;
 
 # Arduino SAMD libs
 cd /root/.arduino15/packages/arduino/hardware/samd/$ARDUINO_SAMD_VERSION/libraries/
@@ -123,5 +138,6 @@ cp $SRC_DIR/build_project_mbot.sh $TGT_DIR
 cp $SRC_DIR/build_project_sensebox.sh $TGT_DIR
 cp $SRC_DIR/build_project_unowifirev2.sh $TGT_DIR
 cp $SRC_DIR/build_project_stm32.sh $TGT_DIR
+cp $SRC_DIR/build_project_nano33ble.sh $TGT_DIR
 
 echo Everything finished

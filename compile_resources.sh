@@ -12,7 +12,7 @@ echo Compiling resources for $NAME, packing file $FOLDER.ino in $FOLDER will be 
 ARCHIVER=
 if [ $CPU_ARCH == "avr" ] || [ $CPU_ARCH == "megaavr" ]; then
   ARCHIVER=avr-gcc-ar
-elif [ $CPU_ARCH == "samd" ] || [ $CPU_ARCH == "stm32" ]; then
+elif [ $CPU_ARCH == "samd" ] || [ $CPU_ARCH == "stm32" ] || [ $CPU_ARCH == "mbed" ]; then
   ARCHIVER=arm-none-eabi-ar
 elif [ $CPU_ARCH == "esp32" ]; then
   ARCHIVER=xtensa-esp32-elf-ar
@@ -38,7 +38,7 @@ echo Finished compilation
 echo Copying results
 mkdir -p $TGT_DIR/core/$NAME
 cp $TMP_DIR/core/core.a $TGT_DIR/core/$NAME
-if [ $NAME == "sensebox" ]; then
+if [ $NAME == "sensebox" ] || [ $CPU_ARCH == "mbed" ]; then
   echo Additionally copying variant.cpp.o
   cp $TMP_DIR/core/variant.cpp.o $TGT_DIR/core/$NAME
 fi

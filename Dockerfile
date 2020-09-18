@@ -37,6 +37,7 @@ ENV ARDUINO_SAMD_VERSION 1.8.8
 ENV SENSEBOX_SAMD_VERSION 1.3.1
 ENV ESP32_ESP32_VERSION 1.0.4
 ENV STM32_STM32_VERSION 1.9.0
+ENV ARDUINO_MBED_VERSION 1.1.6
 
 RUN arduino-cli core update-index --additional-urls https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json,https://raw.githubusercontent.com/sensebox/senseBoxMCU-core/master/package_sensebox_index.json,https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json && \
     arduino-cli core install arduino:avr@$ARDUINO_AVR_VERSION && \
@@ -44,7 +45,8 @@ RUN arduino-cli core update-index --additional-urls https://raw.githubuserconten
     arduino-cli core install arduino:samd@$ARDUINO_SAMD_VERSION && \
     arduino-cli core install sensebox:samd@$SENSEBOX_SAMD_VERSION --additional-urls https://raw.githubusercontent.com/sensebox/senseBoxMCU-core/master/package_sensebox_index.json && \
     arduino-cli core install esp32:esp32@$ESP32_ESP32_VERSION --additional-urls https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json && \
-    arduino-cli core install STM32:stm32@$STM32_STM32_VERSION --additional-urls https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json
+    arduino-cli core install STM32:stm32@$STM32_STM32_VERSION --additional-urls https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json && \
+    arduino-cli core install arduino:mbed@$ARDUINO_MBED_VERSION
 ENV PATH "${PATH}:/root/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin:/root/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/7-2017q4/bin:/root/.arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/bin"
 
 # Install Arduino dependencies
