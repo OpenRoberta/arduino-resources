@@ -22,8 +22,12 @@ rm -f $BUILD_DIR/../target/*
 
 arm-none-eabi-g++ -nostdlib -MMD -DARDUINO=10810 -D$ARDUINO_VARIANT -DARDUINO_ARCH_${ARDUINO_ARCH^^} -DARDUINO_ARCH_NRF52840 \
                   -I$LIB_INCLUDE_DIR \
+                  -I$LIB_INCLUDE_DIR/$ARDUINO_ARCH/Wire \
                   -I$LIB_INCLUDE_DIR/RobertaFunctions \
-                  -I$LIB_INCLUDE_DIR/$ARDUINO_ARCH/Wire/src \
+                  -I$LIB_INCLUDE_DIR/Nano33blesense__Arduino_APDS9960 \
+                  -I$LIB_INCLUDE_DIR/Nano33blesense__Arduino_HTS221 \
+                  -I$LIB_INCLUDE_DIR/Nano33blesense__Arduino_LPS22HB \
+                  -I$LIB_INCLUDE_DIR/Nano33blesense__Arduino_LSM9DS1 \
                   -I$CORE_INCLUDES \
                   -I$VARIANTS_INCLUDES \
                   -iprefix$CORE_INCLUDES \
