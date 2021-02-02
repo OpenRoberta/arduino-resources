@@ -14,6 +14,7 @@ This repository is needed to generate all resources, that are used to compile Ar
 - mBot (avr-gcc)
 - senseBox (arm-none-eabi)
 - STM32 Nucleo-64 (arm-none-eabi)
+- Arduino nano33ble (arm-none-eabi)
 
 The resources generated are
 

@@ -6,8 +6,6 @@
 #include <Arduino_LPS22HB.h>
 #include <Arduino_HTS221.h>
 
-#include <SPI.h>
-#include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
