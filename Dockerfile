@@ -61,7 +61,11 @@ RUN arduino-cli lib update-index && \
     arduino-cli lib install "Stepper"@1.1.3 && \
     arduino-cli lib install "BSEC Software Library"@1.5.1474 && \
     arduino-cli lib install "Adafruit NeoPixel"@1.6.0 && \
-    arduino-cli lib install "WiFiNINA"@1.7.1
+    arduino-cli lib install "WiFiNINA"@1.7.1 && \
+    arduino-cli lib install "Arduino_LSM9DS1"@1.0.0 && \
+    arduino-cli lib install "Arduino_APDS9960"@1.0.3 && \
+    arduino-cli lib install "Arduino_LPS22HB"@1.0.0 && \
+    arduino-cli lib install "Arduino_HTS221"@1.0.0
 
 # re-add when not using outdated LiquidCrystal_I2C
 #    arduino-cli lib install "LiquidCrystal I2C"@1.1.2 && \

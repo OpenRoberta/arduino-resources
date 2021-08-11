@@ -24,13 +24,11 @@ arm-none-eabi-g++ -nostdlib -MMD -DARDUINO=10810 -D$ARDUINO_VARIANT -DARDUINO_AR
                   -I$LIB_INCLUDE_DIR \
                   -I$LIB_INCLUDE_DIR/$ARDUINO_ARCH/Wire \
                   -I$LIB_INCLUDE_DIR/RobertaFunctions \
-                  -I$LIB_INCLUDE_DIR/Nano33blesense__Arduino_APDS9960 \
-                  -I$LIB_INCLUDE_DIR/Nano33blesense__Arduino_HTS221 \
-                  -I$LIB_INCLUDE_DIR/Nano33blesense__Arduino_LPS22HB \
-                  -I$LIB_INCLUDE_DIR/Nano33blesense__Arduino_LSM9DS1 \
-                  -I$LIB_INCLUDE_DIR/Nano33blesense__Adafruit_BusIO \
-                  -I$LIB_INCLUDE_DIR/Nano33blesense__Adafruit_GFX_Library \
-                  -I$LIB_INCLUDE_DIR/Nano33blesense__Adafruit_SSD1306 \
+                  -I$LIB_INCLUDE_DIR/Arduino_APDS9960/src \
+                  -I$LIB_INCLUDE_DIR/Arduino_HTS221/src \
+                  -I$LIB_INCLUDE_DIR/Arduino_LPS22HB/src \
+                  -I$LIB_INCLUDE_DIR/Arduino_LSM9DS1/src \
+                  -I$LIB_INCLUDE_DIR/Adafruit_BusIO \
                   -I$CORE_INCLUDES \
                   -I$VARIANTS_INCLUDES \
                   -iprefix$CORE_INCLUDES \
