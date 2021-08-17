@@ -31,6 +31,9 @@ avr-g++ -c -g -Os -Wall -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunc
         -I$LIB_INCLUDE_DIR/$ARDUINO_ARCH/SoftwareSerial/src \
         -I$LIB_INCLUDE_DIR/$ARDUINO_ARCH/SPI/src \
         -I$LIB_INCLUDE_DIR/$ARDUINO_ARCH/Wire/src \
+	-I$LIB_INCLUDE_DIR/Adafruit_GFX_Library \
+        -I$LIB_INCLUDE_DIR/Adafruit_SSD1306 \
+        -I$LIB_INCLUDE_DIR/Adafruit_BusIO \
         -I$CORE_INCLUDES \
         -I$VARIANTS_INCLUDES \
         $BUILD_DIR/$PROGRAM_NAME.cpp -o $BUILD_DIR/$PROGRAM_NAME.o

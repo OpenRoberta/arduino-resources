@@ -8,6 +8,7 @@
 #include <Servo.h>
 #include <SparkFunLSM6DS3.h>
 #include <Stepper.h>
+#include <Adafruit_SSD1306.h>
 
 void setup()
 {

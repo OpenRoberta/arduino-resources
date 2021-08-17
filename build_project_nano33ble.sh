@@ -16,6 +16,7 @@ LIB_DIR=$PRECOMPILE_DIR/lib/$ARDUINO_DIR_BOARD_NAME
 CORE_FILE=$PRECOMPILE_DIR/core/$ARDUINO_DIR_BOARD_NAME/core.a
 
 CORE_INCLUDES=$PRECOMPILE_DIR/hardware/arduino/$ARDUINO_ARCH/cores/arduino
+CORE_INCLUDES_API=$PRECOMPILE_DIR/hardware/arduino/$ARDUINO_ARCH/cores/arduino/api
 VARIANTS_INCLUDES=$PRECOMPILE_DIR/hardware/arduino/$ARDUINO_ARCH/variants/ARDUINO_NANO33BLE
 
 rm -f $BUILD_DIR/../target/*
@@ -23,13 +24,18 @@ rm -f $BUILD_DIR/../target/*
 arm-none-eabi-g++ -nostdlib -MMD -DARDUINO=10810 -D$ARDUINO_VARIANT -DARDUINO_ARCH_${ARDUINO_ARCH^^} -DARDUINO_ARCH_NRF52840 \
                   -I$LIB_INCLUDE_DIR \
                   -I$LIB_INCLUDE_DIR/$ARDUINO_ARCH/Wire \
+		  -I$LIB_INCLUDE_DIR/$ARDUINO_ARCH/SPI \
                   -I$LIB_INCLUDE_DIR/RobertaFunctions \
                   -I$LIB_INCLUDE_DIR/Arduino_APDS9960/src \
                   -I$LIB_INCLUDE_DIR/Arduino_HTS221/src \
                   -I$LIB_INCLUDE_DIR/Arduino_LPS22HB/src \
                   -I$LIB_INCLUDE_DIR/Arduino_LSM9DS1/src \
+                  -I$LIB_INCLUDE_DIR/AIfES_for_Arduino/src \
+                  -I$LIB_INCLUDE_DIR/Adafruit_GFX_Library \
+                  -I$LIB_INCLUDE_DIR/Adafruit_SSD1306 \
                   -I$LIB_INCLUDE_DIR/Adafruit_BusIO \
                   -I$CORE_INCLUDES \
+		  -I$CORE_INCLUDES_API \
                   -I$VARIANTS_INCLUDES \
                   -iprefix$CORE_INCLUDES \
                   @$VARIANTS_INCLUDES/defines.txt \
@@ -57,4 +63,3 @@ arm-none-eabi-g++ -L$LIB_DIR -Wl,--gc-sections -w \
 arm-none-eabi-objcopy -O binary $BUILD_DIR/$PROGRAM_NAME.elf $BUILD_DIR/../target/$PROGRAM_NAME.bin
 
 rm $BUILD_DIR/*.elf $BUILD_DIR/*.o $BUILD_DIR/*.d
-

@@ -9,10 +9,10 @@ RUN apt-get update && apt-get -y upgrade && \
 
 #    apt-get install -y locales && \
 #    apt-get install -y tzdata && \
-    
+
 #RUN locale-gen de_DE.UTF-8
-#ENV LANG de_DE.UTF-8 
-#ENV LANGUAGE de_DE:de 
+#ENV LANG de_DE.UTF-8
+#ENV LANGUAGE de_DE:de
 #ENV LC_ALL de_DE.UTF-8
 
 #RUN ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime; \
@@ -65,7 +65,10 @@ RUN arduino-cli lib update-index && \
     arduino-cli lib install "Arduino_LSM9DS1"@1.0.0 && \
     arduino-cli lib install "Arduino_APDS9960"@1.0.3 && \
     arduino-cli lib install "Arduino_LPS22HB"@1.0.0 && \
-    arduino-cli lib install "Arduino_HTS221"@1.0.0
+    arduino-cli lib install "Arduino_HTS221"@1.0.0 && \
+    arduino-cli lib install "AIfES for Arduino"@2.0.0 && \
+    arduino-cli lib install "Adafruit GFX Library"@1.10.10 && \
+    arduino-cli lib install "Adafruit SSD1306"@2.4.3
 
 # re-add when not using outdated LiquidCrystal_I2C
 #    arduino-cli lib install "LiquidCrystal I2C"@1.1.2 && \
