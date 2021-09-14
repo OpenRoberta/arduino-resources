@@ -17,6 +17,7 @@ echo Compiling all resources
 ./compile_resources_rob3rta.sh rob3rta rob3rta
 
 ./compile_resources.sh festobionic festobionic esp32 esp32 esp32 :PSRAM=disabled,PartitionScheme=default,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=none "" ""
+./compile_resources.sh festobionicflower festobionicflower esp32 esp32 esp32 :PSRAM=disabled,PartitionScheme=default,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=none "" ""
 
 # bad hack. sensebox uses SSD1306 version 1.1.2, very old, incompatible with actual versions. This old version is incorporated into sensebox packages.
 # The current versions are moved away before sensebox is compiled. Thus -implicitly- the old version from the sensebox packages are used.
@@ -126,6 +127,7 @@ cp ./tools/gen_esp32part.py $TGT_DIR/hardware/esp32/esp32/tools/gen_esp32part.py
 cp ./tools/esptool.py $TGT_DIR/hardware/esp32/esp32/tools/esptool.py
 cd ./tools/sdk/lib/
 find . -name '*.a' -exec cp --parents \{\} $TGT_DIR/lib/festobionic \;
+find . -name '*.a' -exec cp --parents \{\} $TGT_DIR/lib/festobionicflower \;
 
 # STM32 STM32 libs
 cd /root/.arduino15/packages/STM32/hardware/stm32/$STM32_STM32_VERSION/libraries/
@@ -144,6 +146,7 @@ cp $SRC_DIR/build_project.sh $TGT_DIR
 cp $SRC_DIR/build_project_bob3.sh $TGT_DIR
 cp $SRC_DIR/build_project_botnroll.sh $TGT_DIR
 cp $SRC_DIR/build_project_festobionic.sh $TGT_DIR
+cp $SRC_DIR/build_project_festobionicflower.sh $TGT_DIR
 cp $SRC_DIR/build_project_mbot.sh $TGT_DIR
 cp $SRC_DIR/build_project_sensebox.sh $TGT_DIR
 cp $SRC_DIR/build_project_unowifirev2.sh $TGT_DIR
