@@ -61,6 +61,8 @@ RUN arduino-cli lib update-index && \
     arduino-cli lib install "Stepper"@1.1.3 && \
     arduino-cli lib install "BSEC Software Library"@1.5.1474 && \
     arduino-cli lib install "Adafruit NeoPixel"@1.6.0 && \
+    arduino-cli lib install "StepperDriver"@1.3.1 && \
+    arduino-cli lib install "SparkFun CAP1203 Arduino Library"@1.0.5 && \
     arduino-cli lib install "WiFiNINA"@1.7.1 && \
     arduino-cli lib install "Arduino_LSM9DS1"@1.0.0 && \
     arduino-cli lib install "Arduino_APDS9960"@1.0.3 && \
