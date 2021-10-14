@@ -11,11 +11,20 @@ echo Compiling all resources
 ./compile_resources.sh mbot mbot arduino avr uno "" "--build-properties build.extra_flags=-fno-lto"
 ./compile_resources.sh botnroll botnroll arduino avr uno "" "--build-properties build.extra_flags=-fno-lto"
 ./compile_resources.sh unowifirev2 unowifirev2 arduino megaavr uno2018 :mode=off "" "--build-properties build.extra_flags=-fno-lto"
-./compile_resources.sh sensebox sensebox sensebox samd sb :power=on "" ""
 ./compile_resources_bob3.sh bob3 bob3
-./compile_resources.sh festobionic festobionic esp32 esp32 esp32 :PSRAM=disabled,PartitionScheme=default,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=none "" ""
 ./compile_resources.sh nucleo64 stm32 STM32 stm32 Nucleo_64 :pnum=NUCLEO_F401RE,upload_method=MassStorage,xserial=generic,usb=none,xusb=FS,opt=osstd,rtlib=nano ""
 ./compile_resources.sh nano33ble nano33ble arduino mbed nano33ble "" ""
+
+./compile_resources.sh festobionic festobionic esp32 esp32 esp32 :PSRAM=disabled,PartitionScheme=default,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=none "" ""
+
+# bad hack. sensebox uses SSD1306 version 1.1.2, very old, incompatible with actual versions. This old version is incorporated into sensebox packages.
+# The current versions are moved away before sensebox is compiled. Thus -implicitly- the old version from the sensebox packages are used.
+mkdir /tmp/hideForSensebox
+mv /root/Arduino/libraries/Adafruit_GFX_Library /tmp/hideForSensebox
+mv /root/Arduino/libraries/Adafruit_SSD1306 /tmp/hideForSensebox
+./compile_resources.sh sensebox sensebox sensebox samd sb :power=on "" ""
+mv /tmp/hideForSensebox/Adafruit_GFX_Library /root/Arduino/libraries/
+mv /tmp/hideForSensebox/Adafruit_SSD1306 /root/Arduino/libraries/
 echo Finished compilation
 
 echo Creating include and hardware folders
