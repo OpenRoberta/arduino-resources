@@ -14,6 +14,7 @@ echo Compiling all resources
 ./compile_resources_bob3.sh bob3 bob3
 ./compile_resources.sh nucleo64 stm32 STM32 stm32 Nucleo_64 :pnum=NUCLEO_F401RE,upload_method=MassStorage,xserial=generic,usb=none,xusb=FS,opt=osstd,rtlib=nano ""
 ./compile_resources.sh nano33ble nano33ble arduino mbed nano33ble "" ""
+./compile_resources_rob3rta.sh rob3rta rob3rta
 
 ./compile_resources.sh festobionic festobionic esp32 esp32 esp32 :PSRAM=disabled,PartitionScheme=default,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=none "" ""
 
@@ -148,5 +149,6 @@ cp $SRC_DIR/build_project_sensebox.sh $TGT_DIR
 cp $SRC_DIR/build_project_unowifirev2.sh $TGT_DIR
 cp $SRC_DIR/build_project_stm32.sh $TGT_DIR
 cp $SRC_DIR/build_project_nano33ble.sh $TGT_DIR
+cp $SRC_DIR/build_project_rob3rta.sh $TGT_DIR
 
 echo Everything finished
