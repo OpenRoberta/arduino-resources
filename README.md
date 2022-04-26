@@ -8,13 +8,16 @@ This repository is needed to generate all resources, that are used to compile Ar
 - Arduino Nano (avr-gcc)
 - Arduino Uno (avr-gcc)
 - Arduino Uno Wifi Rev.2 (avr-gcc)
-- BOB3 (avr-gcc)
+- BOB3 (avr-gcc) **
 - Bot'n Roll (avr-gcc)
 - Festo Bionics4Education (xtensa-esp32-elf)
 - mBot (avr-gcc)
 - senseBox (arm-none-eabi)
 - STM32 Nucleo-64 (arm-none-eabi)
 - Arduino nano33ble (arm-none-eabi)
+- ROB3RTA (avr-gcc) **
+
+> ** BOB3 and ROB3RTA library files and scripts are downloaded directly from vendor, hence no files are checked in here.
 
 The resources generated are
 
