@@ -78,10 +78,10 @@ RUN arduino-cli lib update-index && \
 WORKDIR /opt/ora-cc-rsc/
 
 # Get libraries, build and compile scripts for NIBO robots (BOB3 and ROB3RTA) directly from vendor.
-#RUN wget https://www.progbob.org/download/nepo-bob3-latest.tar.bz2 && \
-#    tar -xf nepo-bob3-latest.tar.bz2 && \
-#    cp -r nepo-bob3/* . && \
-#    rm -rf nepo-bob3 && rm nepo-bob3-latest.tar.bz2
+RUN wget https://www.progbob.org/download/nepo-bob3-latest.tar.bz2 && \
+    tar -xf nepo-bob3-latest.tar.bz2 && \
+    cp -r nepo-bob3/* . && \
+    rm -rf nepo-bob3 && rm nepo-bob3-latest.tar.bz2
 
 COPY ./ ./
 
