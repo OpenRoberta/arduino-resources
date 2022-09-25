@@ -129,6 +129,11 @@ T _getListElementByIndex(std::list<T> &list, unsigned index) {
 }
 
 template<typename T>
+T _getListElementByIndex(const std::list<T> &list, unsigned index) {
+    _getListElementByIndex(list, index);
+}
+
+template<typename T>
 T _getAndRemoveListElementByIndex(std::list<T> &list, unsigned index) {
     auto iterator = list.begin();
     advance(iterator, index);
