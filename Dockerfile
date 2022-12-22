@@ -68,7 +68,7 @@ RUN arduino-cli lib update-index && \
     arduino-cli lib install "Arduino_APDS9960"@1.0.3 && \
     arduino-cli lib install "Arduino_LPS22HB"@1.0.0 && \
     arduino-cli lib install "Arduino_HTS221"@1.0.0 && \
-    arduino-cli lib install "AIfES for Arduino"@2.0.0 && \
+    arduino-cli lib install "AIfES for Arduino"@2.1.1 && \
     arduino-cli lib install "Adafruit GFX Library"@1.10.10 && \
     arduino-cli lib install "Adafruit SSD1306"@2.4.3
 
