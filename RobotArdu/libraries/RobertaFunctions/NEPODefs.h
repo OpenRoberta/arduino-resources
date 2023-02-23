@@ -277,6 +277,22 @@ void assertNepo(bool test, String text, T left, String op, U right) {
     }
 }
 
+template<typename T, typename U>
+void _printToDisplay(T &disp, U input, bool isOled=false) {
+    disp.print(input);
+    if (isOled) {
+        disp.display();
+    }
+}
+
+template<typename T, typename U>
+void _printToDisplay(T &disp, std::list<U, std::allocator<U>> input, bool isOled=false) {
+    for (auto i : input) {
+        _printToDisplay(disp, i, isOled);
+        delay(50);
+    }
+}
+
 #ifdef MeMCore_H
 std::vector<uint8_t> invertLEDMatrixVec(std::vector<uint8_t> arr) { 
     for (uint8_t i = 0; i < 16; i++) { 
