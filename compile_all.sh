@@ -63,6 +63,8 @@ find . -name '*.h' -exec cp --parents \{\} $TGT_DIR/includes \;
 # Downloaded libraries
 cd /root/Arduino/libraries/
 find . -name '*.h' -exec cp --parents \{\} $TGT_DIR/includes \;
+# IRremote uses .hpp files
+find . -name '*.hpp' -exec cp --parents \{\} $TGT_DIR/includes \;
 # Some libraries may include precompiled data, like the BSEC Software Library
 find . -name '*.a' -exec cp --parents \{\} $TGT_DIR/includes \;
 # ArduinoSTL files are not suffixed with .h, instead copy everything and delete .cpp files
