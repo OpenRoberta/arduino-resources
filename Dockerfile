@@ -53,7 +53,7 @@ ENV PATH "${PATH}:/root/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6
 RUN arduino-cli lib update-index && \
     arduino-cli lib install "DHT sensor library"@1.3.10 && \
     arduino-cli lib install "ESP32Servo"@0.9.0 && \
-    arduino-cli lib install "IRremote"@2.6.1 && \
+    arduino-cli lib install "IRremote"@3.9.0 && \
     arduino-cli lib install "MFRC522"@1.4.7 && \
     arduino-cli lib install "SD"@1.2.4 && \
     arduino-cli lib install "Servo"@1.1.6 && \
